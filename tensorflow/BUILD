@@ -546,3 +546,17 @@ py_library(
         "//tensorflow/tools/api/generator:python_api",
     ],
 )
+
+cc_binary(
+    name = "libtensorflow_all.so",
+    linkshared = 1,
+    linkopts = ["-Wl,--version-script=tensorflow/tf_version_script.lds"], # Remove this line if you are using MacOS
+    deps = [
+        "//tensorflow/core:framework_internal",
+        "//tensorflow/core:tensorflow",
+        "//tensorflow/cc:cc_ops",
+        "//tensorflow/cc:client_session",
+        "//tensorflow/cc:scope",
+        "//tensorflow/c:c_api",
+    ],
+)
